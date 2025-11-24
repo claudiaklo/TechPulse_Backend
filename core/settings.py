@@ -72,7 +72,11 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://tech-pulse-frontend-9rir-i50e2dwik-clauding398-2286s-projects.vercel.app",
-    "https://*.vercel.app",  # Allow all Vercel preview deployments
+]
+
+# Allow all Vercel domains using regex
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://.*\.vercel\.app$",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
