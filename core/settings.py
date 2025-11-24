@@ -30,6 +30,12 @@ ALLOWED_HOSTS = [ "localhost",
     "techpulse-backend.onrender.com",]
 
 
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -45,8 +51,15 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # CORS doit être très haut, OK
     'corsheaders.middleware.CorsMiddleware',
+
+    # Sécurité Django
     'django.middleware.security.SecurityMiddleware',
+
+    # WhiteNoise DOIT venir juste après SecurityMiddleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -54,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
